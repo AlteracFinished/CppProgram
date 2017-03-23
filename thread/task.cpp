@@ -3,35 +3,21 @@
 using namespace std;
 
 template<typename R,typename...Args>
-_alt::_Task<R,Args...>::_Task(function<R(Args...)>& execFunc,Args...args)
+Task::Task(R&& func,Args&& ...args)
 {
-	func=execFunc;
-	bind(&func,args...);
+	taskFunc=bind(forward<R>(func),args...);
 }
 
-template<typename R,typename...Args>
-R _alt::_Task<R,Args...>::run()
+Task::~Task(){}
+
+void Task::operator()()
 {
-	func();
+	taskFunc();
 }
 
-template<typename R>
-Task<R>::Task(function<R> func)
+void Task::run()
 {
-	taskFunc=func;	
-}
-
-template<typename R>
-Task<R>::~Task(){}
-
-template<typename R>
-void Task<R>::operator()()
-{
-	
-}
-template<typename R>
-void Task<R>::run()
-{
+	taskFunc();
 }
 
 

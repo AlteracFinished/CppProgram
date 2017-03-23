@@ -11,7 +11,7 @@ int main(int argc,char* argv[])
 {
 	Mutex* mutex = new Mutex();
 	int number = 1;
-	auto task = new Task<void(int)>(out);
+	Task* task = new Task(out,number);
 	task->run();
 	mutex->lock();
 	out(1);
