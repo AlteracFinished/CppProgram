@@ -9,12 +9,10 @@ void out(int number)
 
 int main(int argc,char* argv[])
 {
-	Mutex* mutex = new Mutex();
-	int number = 1;
-	Task* task = new Task(out,number);
-	task->run();
-	mutex->lock();
-	out(1);
-	mutex->unlock();
+	ThreadPool* threadPool = new ThreadPool(2);
+	int number=1;
+	Task* task = new Task(&out,number);
+	threadPool->addTask(task);
+	sleep(5);
   return 0;
 }
