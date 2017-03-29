@@ -29,7 +29,7 @@ private:
 	Driver* driver;  
 
 	Connection* CreateConnection();
-	ConnPool(stringurl,string user,string password,int maxSize);
+	ConnPool(string url,string user,string password,int maxSize);
 public:  
 	~ConnPool();  
 	Connection* GetConnection();

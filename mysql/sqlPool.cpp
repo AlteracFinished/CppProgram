@@ -22,7 +22,7 @@ ConnPool::ConnPool(string url, string userName,string password, int maxSize)
 	}
 	Connection* conn;
 	pthread_mutex_lock(&lock);
-	for(inti=0;i<maxSize/2;i++)
+	for(int i=0;i<maxSize/2;i++)
 	{
 		conn=this->CreateConnection();
 		if(conn){
